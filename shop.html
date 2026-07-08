@@ -602,6 +602,12 @@ body.day .sun{
     margin-bottom:18px;
 }
 
+.discount{
+    color:#888;
+    text-decoration:line-through;
+    text-decoration-thickness:3px;
+    margin-right:8px;
+}
 /* ========================= */
 /* BUY BUTTON */
 /* ========================= */
@@ -818,12 +824,14 @@ const shopItems = [
     {
         title: "Starter Pack",
         price: "R$ 500",
+        oldPrice: "R$ 700",
         image: "https://www.lolga.com/uploads/images/goods/grow-a-garden-2/all-server-premium-seeds-pack.png?v=1",
         link: "https://www.roblox.com/game-pass/1898701057/"
     }
 /*     {
         title: "Example Item",
         price: "R$ 0",
+        oldPrice: "",
         image: "image.png",
         link: "https://www.roblox.com/game-pass/0/"
     } */
@@ -844,7 +852,10 @@ function loadShop() {
 
                 <div class="shop-title">${item.title}</div>
 
-                <div class="shop-price">${item.price}</div>
+                <div class="shop-price">
+                    ${item.oldPrice ? `<span class="discount">${item.oldPrice}</span> ` : ""}
+                    ${item.price}
+                </div>
 
                 <a class="shop-btn"
                    href="${item.link}"
@@ -860,9 +871,16 @@ function loadShop() {
 }
 
 /* EASY ADD ITEM FUNCTION */
-function addShopItem(title, price, image, link){
+function addShopItem(title, oldPrice, price, image, link){
 
-    shopItems.push({ title, price, image, link });
+    shopItems.push({ 
+        title, 
+        oldPrice, 
+        price, 
+        image, 
+        link 
+    });
+
     loadShop();
 }
 
