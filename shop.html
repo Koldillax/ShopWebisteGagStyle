@@ -839,12 +839,12 @@ const shopItems = [
 ];
 
 /* Render shop */
-function loadShop() {
+function renderShop(containerId, items) {
 
-    const shop = document.getElementById("shop");
+    const shop = document.getElementById(containerId);
     if (!shop) return;
 
-    shop.innerHTML = shopItems.map(item => `
+    shop.innerHTML = items.map(item => `
         <div class="shop-item">
 
             <img src="${item.image}" alt="${item.title}">
@@ -854,7 +854,7 @@ function loadShop() {
                 <div class="shop-title">${item.title}</div>
 
                 <div class="shop-price">
-                    ${item.oldPrice ? `<span class="discount">${item.oldPrice}</span> ` : ""}
+                    ${item.oldPrice ? `<span class="discount">${item.oldPrice}</span>` : ""}
                     ${item.price}
                 </div>
 
@@ -874,19 +874,22 @@ function loadShop() {
 /* EASY ADD ITEM FUNCTION */
 function addShopItem(title, oldPrice, price, image, link){
 
-    shopItems.push({ 
-        title, 
-        oldPrice, 
-        price, 
-        image, 
-        link 
+    shopItems.push({
+        title,
+        oldPrice,
+        price,
+        image,
+        link
     });
 
-    loadShop();
+    renderShop("shop", shopItems);
 }
 
 /* INIT SHOP */
-loadShop();
+renderShop("shop", shopItems);
+/*
+renderShop("shop2", shop2Items);
+*/
 
 </script>
 </body>
