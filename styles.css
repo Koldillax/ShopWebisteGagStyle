@@ -182,25 +182,30 @@ html {
 /* ========================= */
 
 .actions {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    flex-wrap: wrap;
     margin-top: 35px;
+    width: 100%;
 }
 
 .big-btn {
-    width: 220px;
-    height: 120px;
+    width: 100%;
+    aspect-ratio: 1.8 / 1;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     text-decoration: none;
     border-radius: 30px;
-    font-size: 30px;
+    font-size: clamp(18px, 2.5vw, 30px);
     font-weight: 700;
+
     transition: transform .2s, box-shadow .2s;
-    box-shadow: inset 0 3px rgba(255, 255, 255, .25), 0 10px 0 rgba(0, 0, 0, .18);
+    box-shadow:
+        inset 0 3px rgba(255,255,255,.25),
+        0 10px 0 rgba(0,0,0,.18);
 }
 
 .big-btn:hover {
@@ -449,5 +454,31 @@ html {
     .shop-btn {
         padding: 10px;
         font-size: 14px;
+    }
+}
+/* ========================= */
+/* RESPONSIVE BUTTONS */
+/* ========================= */
+
+@media (max-width: 768px) {
+    .actions {
+        gap: 14px;
+    }
+
+    .big-btn {
+        border-radius: 22px;
+        font-size: clamp(14px, 3vw, 22px);
+    }
+}
+
+@media (max-width: 480px) {
+    .actions {
+        gap: 8px;
+    }
+
+    .big-btn {
+        border-radius: 18px;
+        font-size: 14px;
+        aspect-ratio: 1.4 / 1;
     }
 }
