@@ -1,812 +1,62 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grow A Garden 2 | Shop</title>
-
+<title>Grow A Garden 2 Guilds | Shop</title>
+<meta name="description" content="Grow A Garden 2 Guilds Shop - Buy Roblox GAG2 items, seeds, pets, fruits, and resources to help your guild reach the top.">
+    
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="https://gag.gg/favicon-32.png?v=6">
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family:'Fredoka',sans-serif;
-    min-height:100vh;
-    overflow-x:hidden;
-    transition:background 3s ease;
-}
-
-/* ========================= */
-/* DAY / NIGHT */
-/* ========================= */
-
-body.night{
-    background:
-    linear-gradient(
-    to bottom,
-    #09112c 0%,
-    #131c42 100%);
-}
-
-body.day{
-    background:
-    linear-gradient(
-    to bottom,
-    #6bc9ff 0%,
-    #e6f8ff 100%);
-}
-
-/* ========================= */
-/* SKY */
-/* ========================= */
-
-.sky{
-    position:fixed;
-    inset:0;
-    z-index:-2;
-}
-
-/* ========================= */
-/* STARS */
-/* ========================= */
-
-.stars{
-    position:absolute;
-    inset:0;
-
-    background-image:
-    radial-gradient(circle,#fff 1px,transparent 1px);
-
-    background-size:130px 130px;
-
-    animation:twinkle 4s infinite alternate;
-}
-
-@keyframes twinkle{
-    from{opacity:.25}
-    to{opacity:1}
-}
-
-body.day .stars{
-    opacity:0;
-}
-
-/* ========================= */
-/* MOON */
-/* ========================= */
-
-.moon{
-    position:absolute;
-    right:8%;
-    top:150px;
-
-    width:130px;
-    height:130px;
-
-    border-radius:50%;
-
-    background:white;
-
-    box-shadow:
-    0 0 40px white,
-    0 0 120px rgba(255,255,255,.5);
-
-    transition:3s ease;
-}
-
-/* ========================= */
-/* SUN */
-/* ========================= */
-
-.sun{
-    position:absolute;
-    right:8%;
-    top:150px;
-
-    width:130px;
-    height:130px;
-
-    border-radius:50%;
-
-    background:#FFD44D;
-
-    box-shadow:
-    0 0 40px #FFD44D,
-    0 0 120px rgba(255,212,77,.6);
-
-    opacity:0;
-
-    transition:3s ease;
-}
-
-body.day .moon{
-    opacity:0;
-    transform:
-    translateY(250px)
-    rotate(180deg);
-}
-
-body.day .sun{
-    opacity:1;
-    transform:
-    translateY(-20px)
-    scale(1.05);
-}
-
-/* ========================= */
-/* CLOUDS */
-/* ========================= */
-
-.cloud{
-    position:absolute;
-    background:rgba(255,255,255,.2);
-    border-radius:100px;
-    filter:blur(1px);
-}
-
-.cloud::before,
-.cloud::after{
-    content:"";
-    position:absolute;
-    background:inherit;
-    border-radius:50%;
-}
-
-.cloud1{
-    width:180px;
-    height:60px;
-    top:130px;
-    left:-300px;
-
-    animation:cloudMove 50s linear infinite;
-}
-
-.cloud1::before{
-    width:80px;
-    height:80px;
-    left:20px;
-    top:-25px;
-}
-
-.cloud1::after{
-    width:100px;
-    height:100px;
-    left:70px;
-    top:-35px;
-}
-
-.cloud2{
-    width:220px;
-    height:70px;
-    top:250px;
-    left:-500px;
-
-    animation:cloudMove 70s linear infinite;
-}
-
-.cloud2::before{
-    width:90px;
-    height:90px;
-    left:25px;
-    top:-30px;
-}
-
-.cloud2::after{
-    width:120px;
-    height:120px;
-    left:90px;
-    top:-45px;
-}
-
-@keyframes cloudMove{
-
-    from{
-        transform:translateX(-300px);
-    }
-
-    to{
-        transform:translateX(calc(100vw + 600px));
-    }
-}
-
-/* ========================= */
-/* NAVBAR */
-/* ========================= */
-
-.topbar{
-    height:70px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
-}
-
-.nav-btn{
-    text-decoration:none;
-    color:white;
-    font-weight:700;
-
-    padding:12px 22px;
-    border-radius:14px;
-}
-
-.login-small{
-    background:#5371ff;
-}
-
-.vote-small{
-    background:#68d247;
-}
-
-.guild-small{
-    background:#ffc948;
-    color:#312400;
-}
-
-/* ========================= */
-/* MAIN */
-/* ========================= */
-
-.wrapper{
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-
-    padding:20px;
-}
-
-/* ========================= */
-/* CARD */
-/* ========================= */
-
-.card{
-    width:1100px;
-    max-width:95%;
-
-    background:
-    rgba(20,26,57,.68);
-
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
-
-    border-radius:42px;
-
-    padding:40px;
-
-    position:relative;
-
-    text-align:center;
-}
-
-.card::before{
-    content:"";
-
-    position:absolute;
-    inset:-2px;
-
-    border-radius:44px;
-
-    border:
-    2px solid rgba(255,255,255,.08);
-
-    pointer-events:none;
-}
-
-.card::after{
-    content:"";
-
-    position:absolute;
-
-    inset:12px;
-
-    border-radius:28px;
-
-    border:
-    1px solid rgba(255,255,255,.04);
-
-    pointer-events:none;
-}
-
-/* ========================= */
-/* LOGO */
-/* ========================= */
-
-.logo{
-    margin-bottom:25px;
-}
-
-.logo-top{
-    font-size:92px;
-    font-weight:700;
-    line-height:.9;
-
-    color:white;
-
-    text-shadow:
-    0 4px 0 #d4d4d4,
-    0 8px 14px rgba(0,0,0,.3);
-}
-
-.logo-bottom{
-    font-size:92px;
-    font-weight:700;
-    line-height:.9;
-
-    color:#56cd53;
-
-    text-shadow:
-    0 4px 0 #3f9f3a,
-    0 8px 14px rgba(0,0,0,.3);
-}
-
-.pot{
-    display:inline-block;
-    transform:
-    rotate(-12deg)
-    translateY(6px);
-}
-
-.two{
-    font-size:125px;
-}
-
-/* ========================= */
-/* TEXT */
-/* ========================= */
-
-.description{
-    color:white;
-
-    font-size:23px;
-    line-height:1.5;
-
-    max-width:700px;
-
-    margin:auto;
-}
-
-.highlight{
-    color:#ffd74d;
-}
-
-/* ========================= */
-/* BUTTONS */
-/* ========================= */
-
-.actions{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
-
-    margin-top:35px;
-}
-
-.big-btn{
-    width:220px;
-    height:120px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    text-decoration:none;
-
-    border-radius:30px;
-
-    font-size:30px;
-    font-weight:700;
-
-    transition:
-    transform .2s,
-    box-shadow .2s;
-
-    box-shadow:
-    inset 0 3px rgba(255,255,255,.25),
-    0 10px 0 rgba(0,0,0,.18);
-}
-
-.big-btn:hover{
-    transform:
-    translateY(-6px)
-    scale(1.03);
-}
-
-.big-btn:active{
-    transform:
-    translateY(4px)
-    scale(.98);
-}
-
-.vote{
-    background:
-    linear-gradient(
-    #93e65f,
-    #68c93d);
-
-    color:white;
-}
-
-.guild{
-    background:
-    linear-gradient(
-    #ffd95d,
-    #f4b127);
-
-    color:#332300;
-}
-
-.login{
-    background:
-    linear-gradient(
-    #6c86ff,
-    #4d68f0);
-
-    color:white;
-}
-
-/* ========================= */
-/* PILLS */
-/* ========================= */
-
-.pill{
-    width:max-content;
-
-    margin:16px auto;
-
-    padding:
-    12px 26px;
-
-    border-radius:999px;
-
-    color:white;
-
-    background:
-    rgba(255,255,255,.05);
-
-    border:
-    1px solid rgba(255,255,255,.08);
-}
-
-.green{
-    color:#66e26a;
-}
-
-/* ========================= */
-/* DIVIDER */
-/* ========================= */
-
-.divider{
-    height:1px;
-    background:
-    rgba(255,255,255,.08);
-
-    margin:22px 0;
-}
-
-/* ========================= */
-/* EDGE BOX */
-/* ========================= */
-
-.edge{
-    background:
-    rgba(55,110,70,.65);
-
-    border:
-    1px solid rgba(255,255,255,.08);
-
-    border-radius:20px;
-
-    padding:20px;
-
-    color:white;
-
-    font-size:28px;
-    font-weight:700;
-}
-/* ========================= */
-/* SHOP */
-/* ========================= */
-
-.shop{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:24px;
-    margin-top:35px;
-}
-
-/* ========================= */
-/* PRODUCT CARD */
-/* ========================= */
-
-.shop-item{
-    position:relative;
-
-    display:flex;
-    flex-direction:column;
-
-    overflow:hidden;
-
-    background:rgba(255,255,255,.08);
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-
-    border:1px solid rgba(255,255,255,.12);
-    border-radius:24px;
-
-    transition:
-        transform .35s ease,
-        box-shadow .35s ease,
-        border-color .35s ease;
-}
-
-.shop-item:hover{
-
-    transform:
-        translateY(-8px);
-
-    border-color:
-        rgba(122,201,255,.5);
-
-    box-shadow:
-        0 18px 40px rgba(0,0,0,.35);
-}
-
-.shop-item img{
-
-    width:100%;
-    aspect-ratio:1/1;
-
-    object-fit:cover;
-
-    transition:
-        transform .45s ease;
-}
-
-.shop-item:hover img{
-    transform:scale(1.08);
-}
-
-.shop-content{
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-
-    padding: 18px;
-}
-
-.shop-title{
-
-    font-size:20px;
-    font-weight:700;
-
-    color:white;
-
-    margin-bottom:8px;
-}
-
-.shop-price{
-
-    font-size:18px;
-    font-weight:600;
-
-    color:#74f38a;
-
-    margin-bottom:18px;
-}
-
-.discount{
-    color:#888;
-    text-decoration:line-through;
-    text-decoration-thickness:3px;
-    margin-right:8px;
-}
-/* ========================= */
-/* BUY BUTTON */
-/* ========================= */
-
-.shop-btn{
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin-top:auto;
-
-    width:100%;
-
-    padding:14px;
-
-    border-radius:14px;
-
-    text-decoration:none;
-
-    background:
-        linear-gradient(
-        135deg,
-        #5b8cff,
-        #3d6eff);
-
-    color:white;
-
-    font-size:16px;
-    font-weight:700;
-
-    transition:
-        transform .25s,
-        box-shadow .25s,
-        background .25s;
-}
-
-.shop-btn:hover{
-
-    transform:translateY(-2px);
-
-    box-shadow:
-        0 10px 24px rgba(61,110,255,.45);
-}
-
-.shop-btn:active{
-    transform:scale(.97);
-}
-
-/* ========================= */
-/* RESPONSIVE */
-/* ========================= */
-
-@media (max-width:900px){
-
-    .shop{
-        grid-template-columns:repeat(3,1fr);
-    }
-
-}
-
-@media (max-width:768px){
-
-    .logo-top,
-    .logo-bottom{
-        font-size:56px;
-    }
-
-    .two{
-    font-size:70px;
-    }
-
-    .description{
-    font-size:18px;
-    }
-    
-    .card{
-        padding:22px;
-        border-radius:28px;
-    }
-
-    .shop{
-        grid-template-columns:repeat(2,1fr);
-        gap:14px;
-    }
-
-    .shop-title{
-        font-size:16px;
-    }
-
-    .shop-price{
-        font-size:15px;
-    }
-
-    .shop-btn{
-        padding:11px;
-        font-size:15px;
-    }
-
-}
-
-@media (max-width:420px){
-
-    .logo-top,
-    .logo-bottom{
-        font-size:56px;
-    }
-
-    .two{
-    font-size:70px;
-    }
-
-    .description{
-    font-size:18px;
-    }
-    
-    .shop{
-        grid-template-columns:repeat(2,1fr);
-        gap:12px;
-    }
-
-    .shop-content{
-        padding:12px;
-    }
-
-    .shop-btn{
-        padding:10px;
-        font-size:14px;
-    }
-
-}
-</style>
+<link rel="stylesheet" href="bg.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body class="night">
 
 <div class="sky">
-
     <div class="stars"></div>
-
     <div class="moon"></div>
-
     <div class="sun"></div>
-
     <div class="cloud cloud1"></div>
-
     <div class="cloud cloud2"></div>
-
 </div>
 
 <div class="topbar">
-
     <a href="https://www.roblox.com/home" class="nav-btn login-small">Login</a>
-
-    <a href="https://gag.gg/vote/" class="nav-btn vote-small">Vote</a>
-
-    <a href="https://gag.gg/guilds/" class="nav-btn guild-small">Guilds</a>
-
+    <a href="index.html" class="nav-btn vote-small">Home</a>
+    <a href="more.html" class="nav-btn guild-small">Help</a>
 </div>
 
 <div class="wrapper">
+    <div class="shopcard">
+        <div class="logo">
+            <div class="logo-top">
+                G<span class="pot">🍎</span>G <span class="two">2</span>
+            </div>
+            <div class="logo-bottom">
+                Guilds Shop
+            </div>
+        </div>
 
-<div class="card">
+        <div class="divider"></div>
 
-<div class="logo">
+        <div id="shop" class="shop"></div>
 
-<div class="logo-top">
-GR<span class="pot">🍎</span>W A
-</div>
-
-<div class="logo-bottom">
-GARDEN <span class="two">2</span>
-</div>
-
-</div>
-
-<div class="description">
-All made available using <span class="highlight">official</span> grow a garden 2 <span class="highlight">bots</span>.
-</div>
-    
-<div class="divider"></div>
-
-<div id="shop" class="shop"></div>
-
-</div>
 </div>
 
 <script>
-
 let dayMode = false;
 
 /* ========================= */
 /* DAY / NIGHT TOGGLE */
 /* ========================= */
 
-function switchTheme(){
-
-    if(dayMode){
+function switchTheme() {
+    if (dayMode) {
         document.body.classList.remove("day");
         document.body.classList.add("night");
-    }else{
+    } else {
         document.body.classList.remove("night");
         document.body.classList.add("day");
     }
@@ -815,7 +65,7 @@ function switchTheme(){
 }
 
 /* Every 60 seconds */
-setInterval(switchTheme,60000);
+setInterval(switchTheme, 60000);
 
 /* ========================= */
 /* SHOP SYSTEM */
@@ -823,74 +73,63 @@ setInterval(switchTheme,60000);
 
 const shopItems = [
     {
-        title: "Starter Pack",
-        price: "R$ 500",
-        oldPrice: "R$ 700",
-        image: "https://www.lolga.com/uploads/images/goods/grow-a-garden-2/all-server-premium-seeds-pack.png?v=1",
-        link: "https://www.roblox.com/game-pass/1898701057/"
+        title: "100m - 1b Fruits",
+        price: "R$ 50",
+        oldPrice: "",
+        image: "https://www.lolga.com/uploads/images/goods/grow-a-garden-2/all-server-100000-sheckles.png",
+        link: "https://www.roblox.com/game-pass/1898492803/"
     }
-/*     {
-        title: "Example Item",
-        price: "R$ 0",
+/*
+    {
+        title: "Item",
+        price: "R$ 50",
         oldPrice: "",
         image: "image.png",
         link: "https://www.roblox.com/game-pass/0/"
-    } */
+    } 
+*/
 ];
+
 
 /* Render shop */
 function renderShop(containerId, items) {
-
     const shop = document.getElementById(containerId);
     if (!shop) return;
 
     shop.innerHTML = items.map(item => `
         <div class="shop-item">
-
             <img src="${item.image}" alt="${item.title}">
-
             <div class="shop-content">
-
                 <div class="shop-title">${item.title}</div>
-
                 <div class="shop-price">
                     ${item.oldPrice ? `<span class="discount">${item.oldPrice}</span>` : ""}
                     ${item.price}
                 </div>
-
                 <a class="shop-btn"
                    href="${item.link}"
-                   target="_blank">
+                   ${item.link.startsWith("#") ? "" : 'target="_blank"'}>
                     Buy Now
                 </a>
-
             </div>
-
         </div>
     `).join("");
-
 }
 
-/* EASY ADD ITEM FUNCTION */
-function addShopItem(title, oldPrice, price, image, link){
-
-    shopItems.push({
+function addShopItem(shopArray, containerId, title, oldPrice, price, image, link) {
+    shopArray.push({
         title,
         oldPrice,
         price,
         image,
         link
     });
-
-    renderShop("shop", shopItems);
+    renderShop(containerId, shopArray);
 }
 
 /* INIT SHOP */
 renderShop("shop", shopItems);
-/*
-renderShop("shop2", shop2Items);
-*/
 
 </script>
+
 </body>
 </html>
