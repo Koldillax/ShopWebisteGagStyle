@@ -3,653 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grow A Garden 2 Shop</title>
-<meta name="description" content="Grow A Garden 2 Shop - Gag.gg Tools: a live seed restock timer, the rarest pets index, leaderboards, and player guides.">
-<meta name="keywords" content="Grow A Garden 2 Shop, Gag2, shop grow a garden">
-<meta name="google-site-verification" content="tjT_bJcwizaRK29xKZd6leGGHIaUxraHiwHc2tgNGT0" />
+<title>Grow A Garden 2 Guilds | Home</title>
+<meta name="description" content="Join Grow A Garden 2 Guilds Shop for guild items, guides, voting rewards and helpful resources for Grow A Garden 2 players.">
 
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="https://gag.gg/favicon-32.png?v=6">
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family:'Fredoka',sans-serif;
-    min-height:100vh;
-    overflow-x:hidden;
-    transition:background 3s ease;
-}
-
-/* ========================= */
-/* DAY / NIGHT */
-/* ========================= */
-
-body.night{
-    background:
-    linear-gradient(
-    to bottom,
-    #09112c 0%,
-    #131c42 100%);
-}
-
-body.day{
-    background:
-    linear-gradient(
-    to bottom,
-    #6bc9ff 0%,
-    #e6f8ff 100%);
-}
-
-/* ========================= */
-/* SKY */
-/* ========================= */
-
-.sky{
-    position:fixed;
-    inset:0;
-    z-index:-2;
-}
-
-/* ========================= */
-/* STARS */
-/* ========================= */
-
-.stars{
-    position:absolute;
-    inset:0;
-
-    background-image:
-    radial-gradient(circle,#fff 1px,transparent 1px);
-
-    background-size:130px 130px;
-
-    animation:twinkle 4s infinite alternate;
-}
-
-@keyframes twinkle{
-    from{opacity:.25}
-    to{opacity:1}
-}
-
-body.day .stars{
-    opacity:0;
-}
-
-/* ========================= */
-/* MOON */
-/* ========================= */
-
-.moon{
-    position:absolute;
-    right:8%;
-    top:150px;
-
-    width:130px;
-    height:130px;
-
-    border-radius:50%;
-
-    background:white;
-
-    box-shadow:
-    0 0 40px white,
-    0 0 120px rgba(255,255,255,.5);
-
-    transition:3s ease;
-}
-
-/* ========================= */
-/* SUN */
-/* ========================= */
-
-.sun{
-    position:absolute;
-    right:8%;
-    top:150px;
-
-    width:130px;
-    height:130px;
-
-    border-radius:50%;
-
-    background:#FFD44D;
-
-    box-shadow:
-    0 0 40px #FFD44D,
-    0 0 120px rgba(255,212,77,.6);
-
-    opacity:0;
-
-    transition:3s ease;
-}
-
-body.day .moon{
-    opacity:0;
-    transform:
-    translateY(250px)
-    rotate(180deg);
-}
-
-body.day .sun{
-    opacity:1;
-    transform:
-    translateY(-20px)
-    scale(1.05);
-}
-
-/* ========================= */
-/* CLOUDS */
-/* ========================= */
-
-.cloud{
-    position:absolute;
-    background:rgba(255,255,255,.2);
-    border-radius:100px;
-    filter:blur(1px);
-}
-
-.cloud::before,
-.cloud::after{
-    content:"";
-    position:absolute;
-    background:inherit;
-    border-radius:50%;
-}
-
-.cloud1{
-    width:180px;
-    height:60px;
-    top:130px;
-    left:-300px;
-
-    animation:cloudMove 50s linear infinite;
-}
-
-.cloud1::before{
-    width:80px;
-    height:80px;
-    left:20px;
-    top:-25px;
-}
-
-.cloud1::after{
-    width:100px;
-    height:100px;
-    left:70px;
-    top:-35px;
-}
-
-.cloud2{
-    width:220px;
-    height:70px;
-    top:250px;
-    left:-500px;
-
-    animation:cloudMove 70s linear infinite;
-}
-
-.cloud2::before{
-    width:90px;
-    height:90px;
-    left:25px;
-    top:-30px;
-}
-
-.cloud2::after{
-    width:120px;
-    height:120px;
-    left:90px;
-    top:-45px;
-}
-
-@keyframes cloudMove{
-
-    from{
-        transform:translateX(-300px);
-    }
-
-    to{
-        transform:translateX(calc(100vw + 600px));
-    }
-}
-
-/* ========================= */
-/* NAVBAR */
-/* ========================= */
-
-.topbar{
-    height:70px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
-}
-
-.nav-btn{
-    text-decoration:none;
-    color:white;
-    font-weight:700;
-
-    padding:12px 22px;
-    border-radius:14px;
-}
-
-.login-small{
-    background:#5371ff;
-}
-
-.vote-small{
-    background:#68d247;
-}
-
-.guild-small{
-    background:#ffc948;
-    color:#312400;
-}
-
-/* ========================= */
-/* MAIN */
-/* ========================= */
-
-.wrapper{
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-
-    padding:20px;
-}
-
-/* ========================= */
-/* CARD */
-/* ========================= */
-
-.card{
-    width:820px;
-    max-width:95%;
-
-    background:
-    rgba(20,26,57,.68);
-
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
-
-    border-radius:42px;
-
-    padding:40px;
-
-    position:relative;
-
-    text-align:center;
-}
-
-.card::before{
-    content:"";
-
-    position:absolute;
-    inset:-2px;
-
-    border-radius:44px;
-
-    border:
-    2px solid rgba(255,255,255,.08);
-
-    pointer-events:none;
-}
-
-.card::after{
-    content:"";
-
-    position:absolute;
-
-    inset:12px;
-
-    border-radius:28px;
-
-    border:
-    1px solid rgba(255,255,255,.04);
-
-    pointer-events:none;
-}
-
-/* ========================= */
-/* LOGO */
-/* ========================= */
-
-.logo{
-    margin-bottom:25px;
-}
-
-.logo-top{
-    font-size:92px;
-    font-weight:700;
-    line-height:.9;
-
-    color:white;
-
-    text-shadow:
-    0 4px 0 #d4d4d4,
-    0 8px 14px rgba(0,0,0,.3);
-}
-
-.logo-bottom{
-    font-size:92px;
-    font-weight:700;
-    line-height:.9;
-
-    color:#56cd53;
-
-    text-shadow:
-    0 4px 0 #3f9f3a,
-    0 8px 14px rgba(0,0,0,.3);
-}
-
-.pot{
-    display:inline-block;
-    transform:
-    rotate(-12deg)
-    translateY(6px);
-}
-
-.two{
-    font-size:125px;
-}
-
-/* ========================= */
-/* TEXT */
-/* ========================= */
-
-.description{
-    color:white;
-
-    font-size:23px;
-    line-height:1.5;
-
-    max-width:700px;
-
-    margin:auto;
-}
-
-.highlight{
-    color:#ffd74d;
-}
-
-/* ========================= */
-/* BUTTONS */
-/* ========================= */
-
-.actions{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:20px;
-
-    margin-top:45px;
-
-}
-
-.big-btn{
-    width:220px;
-    height:120px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    text-decoration:none;
-
-    border-radius:30px;
-
-    font-size:30px;
-    font-weight:700;
-
-    transition:
-    transform .2s,
-    box-shadow .2s;
-
-    box-shadow:
-    inset 0 3px rgba(255,255,255,.25),
-    0 10px 0 rgba(0,0,0,.18);
-}
-
-.big-btn:hover{
-    transform:
-    translateY(-6px)
-    scale(1.03);
-}
-
-.big-btn:active{
-    transform:
-    translateY(4px)
-    scale(.98);
-}
-
-.vote{
-    background:
-    linear-gradient(
-    #93e65f,
-    #68c93d);
-
-    color:white;
-}
-
-.guild{
-    background:
-    linear-gradient(
-    #ffd95d,
-    #f4b127);
-
-    color:#332300;
-}
-
-.login{
-    background:
-    linear-gradient(
-    #6c86ff,
-    #4d68f0);
-
-    color:white;
-}
-
-/* ========================= */
-/* PILLS */
-/* ========================= */
-
-.pill {
-    display: inline-block;
-    max-width: 100%;
-    box-sizing: border-box;
-
-    margin: 16px auto;
-    padding: 12px 26px;
-
-    border-radius: 999px;
-    color: white;
-
-    background: rgba(255,255,255,.05);
-    border: 1px solid rgba(255,255,255,.08);
-
-    overflow-wrap: break-word;
-}
-
-.green{
-    color:#66e26a;
-}
-
-
-
-/* ========================= */
-/* DIVIDER */
-/* ========================= */
-
-.divider{
-    height:1px;
-    background:
-    rgba(255,255,255,.08);
-
-    margin:22px 0;
-}
-
-/* ========================= */
-/* EDGE BOX */
-/* ========================= */
-
-.edge{
-    background:
-    rgba(55,110,70,.65);
-
-    border:
-    1px solid rgba(255,255,255,.08);
-
-    border-radius:20px;
-
-    padding:20px;
-
-    color:white;
-
-    font-size:28px;
-    font-weight:700;
-}
-
-@media(max-width:768px){
-
-.actions{
-    grid-template-columns:repeat(3,1fr);
-}
-    
-.logo-top,
-.logo-bottom{
-    font-size:56px;
-}
-
-.two{
-    font-size:70px;
-}
-
-.description{
-    font-size:18px;
-}
-
-.big-btn{
-    width:100%;
-    font-size:20px;
-    height:90px;
-}
-
-}
-
-</style>
+<link rel="stylesheet" href="bg.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body class="night">
 
 <div class="sky">
-
     <div class="stars"></div>
-
     <div class="moon"></div>
-
     <div class="sun"></div>
-
     <div class="cloud cloud1"></div>
-
     <div class="cloud cloud2"></div>
-
 </div>
 
 <div class="topbar">
-
     <a href="https://www.roblox.com/home" class="nav-btn login-small">Login</a>
-
-    <a href="https://gag.gg/vote/" class="nav-btn vote-small">Vote</a>
-
-    <a href="https://gag.gg/guilds/" class="nav-btn guild-small">Guilds</a>
-
+    <a href="index.html" class="nav-btn vote-small">Home</a>
+    <a href="more.html" class="nav-btn guild-small">Help</a>
 </div>
 
 <div class="wrapper">
+    <div class="card">
+        <div class="logo">
+            <div class="logo-top">
+                G<span class="pot">🍎</span>G <span class="two">2</span>
+            </div>
+            <div class="logo-bottom">
+                Guilds Shop
+            </div>
+        </div>
 
-<div class="card">
+        <div class="description">
+            Have you ever wanted to make it into the <span class="highlight">top</span> guilds in <span class="highlight">Grow A Garden 2</span>? Well now you <span class="highlight">can</span>!<br><br>
+            Must be <span class="highlight">16+</span> to shop.
+        </div>
 
-<div class="logo">
-
-<div class="logo-top">
-GR<span class="pot">🍎</span>W A
+        <div class="actions">
+            <a href="https://gag.gg/vote/" class="big-btn vote">
+                ❤ Vote
+            </a>
+            <a href="shop.html" class="big-btn guild">
+                ❖ Shop
+            </a>
+            <a href="https://www.roblox.com/home" class="big-btn login">
+                ⏵ Login
+            </a>
+        </div>
+    </div>
 </div>
 
-<div class="logo-bottom">
-GARDEN <span class="two">2</span>
-</div>
-
-</div>
-
-<div class="description">
-Gag.gg Tools:
-a live seed restock timer,
-the <span class="highlight">rarest pets index</span>,
-<span class="highlight">leaderboards</span>,
-and player
-<span class="highlight">guides</span>.
-</div>
-
-<div class="actions">
-
-<a href="https://gag.gg/vote/" class="big-btn vote">
-❤ Vote
-</a>
-
-<a href="shop.html" class="big-btn guild">
-❖ Shop
-</a>
-
-<a href="https://www.roblox.com/home" class="big-btn login">
-⏵ Login
-</a>
-
-</div>
-
-
-
-<div class="divider"></div>
-    
-<div class="pill">
-R$ Gag 2 Shop • New
-</div>
-
-</div>
-</div>
 
 <script>
+    let dayMode = false;
 
-let dayMode = false;
-
-function switchTheme(){
-
-    if(dayMode){
-
-        document.body.classList.remove("day");
-        document.body.classList.add("night");
-
-    }else{
-
-        document.body.classList.remove("night");
-        document.body.classList.add("day");
-
+    function switchTheme() {
+        if (dayMode) {
+            document.body.classList.remove("day");
+            document.body.classList.add("night");
+        } else {
+            document.body.classList.remove("night");
+            document.body.classList.add("day");
+        }
+        dayMode = !dayMode;
     }
 
-    dayMode = !dayMode;
-}
-
-/* Every 30 seconds */
-setInterval(switchTheme,60000);
-
+    /* Every 60 seconds */
+    setInterval(switchTheme, 60000);
 </script>
 
 </body>
