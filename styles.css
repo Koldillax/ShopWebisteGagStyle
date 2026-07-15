@@ -236,13 +236,21 @@ html {
 /* ========================= */
 
 .pill {
-    width: max-content;
+    width: fit-content;
+    max-width: 90%;
+
     margin: 16px auto;
     padding: 12px 26px;
+
     border-radius: 999px;
+
     color: white;
     background: rgba(255, 255, 255, .05);
     border: 1px solid rgba(255, 255, 255, .08);
+
+    text-align: center;
+    white-space: normal;
+    overflow-wrap: break-word;
 }
 
 .green {
