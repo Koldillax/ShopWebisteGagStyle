@@ -21,11 +21,21 @@ html {
 /* ========================= */
 
 .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
     height: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
+
+    background: rgba(20, 26, 57, 0.35); /* Transparent */
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px); /* Safari */
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .nav-btn {
